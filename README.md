@@ -13,14 +13,13 @@ Dieses Tool ermöglicht es Benutzern, Abstände von einem bestimmten Punkt zu al
 Die Anwendung ist deployed und sofort benutzbar ohne lokale Installation.
 
 ### KI-Assistent
-<img width="990" height="633" alt="image" src="https://github.com/user-attachments/assets/3bdf6bd0-37ad-4ab6-9292-69d0ad364d61" />
+<img width="747" height="712" alt="image" src="https://github.com/user-attachments/assets/dbf85c26-80d8-4eca-a1b5-c866be78ba2c" />
 
 ### Abstandsmessung
-<img width="991" height="748" alt="image" src="https://github.com/user-attachments/assets/afb444bd-5b6d-460e-9d27-cb1d775477b8" />
+<img width="742" height="397" alt="image" src="https://github.com/user-attachments/assets/10144d6d-1906-4fa7-9912-00e9700ca5ed" />
 
 ### Compliance-Prüfung
-<img width="992" height="826" alt="image" src="https://github.com/user-attachments/assets/c30e26b8-86aa-46ac-b1db-1b4a77a219b9" />
-
+<img width="743" height="816" alt="image" src="https://github.com/user-attachments/assets/8cddb6fc-59c3-4293-a297-15d8d176a2cc" />
 
 ## ✨ Funktionen
 
