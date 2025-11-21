@@ -1,7 +1,7 @@
 {
-  "name": "ogc-distance-measurement-tool",
+  "name": "objektsuche-compliance-check",
   "version": "1.0.0",
-  "description": "Ein Werkzeug zur Messung von Abständen zu Features über OGC-WFS-Dienste mit KI-Assistenz.",
+  "description": "Eine webbasierte Anwendung zur Suche von geografischen Objekten über OGC Web Feature Services (WFS) mit KI-gestützter Unterstützung und automatischer Compliance-Prüfung.",
   "main": "index.html",
   "scripts": {
     "dev": "vite",
