@@ -13,13 +13,13 @@ Dieses Tool ermöglicht es Benutzern, geografische Objekte über OGC Web Feature
 Die Anwendung ist deployed und sofort benutzbar ohne lokale Installation.
 
 ### Suchassistent
-<img width="742" height="684" alt="image" src="https://github.com/user-attachments/assets/d8b6bc4d-4055-48fe-853a-273c711f881b" />
+<img width="741" height="683" alt="image" src="https://github.com/user-attachments/assets/e9164d18-5624-4972-80f5-7c3e08626536" />
 
 ### Manuelle Eingabe
-<img width="742" height="397" alt="image" src="https://github.com/user-attachments/assets/10144d6d-1906-4fa7-9912-00e9700ca5ed" />
+<img width="745" height="593" alt="image" src="https://github.com/user-attachments/assets/6b09545e-1fed-4714-90f4-2b8e4e11234d" />
 
 ### Compliance-Prüfung
-<img width="743" height="816" alt="image" src="https://github.com/user-attachments/assets/8cddb6fc-59c3-4293-a297-15d8d176a2cc" />
+<img width="742" height="721" alt="image" src="https://github.com/user-attachments/assets/8b8816ec-b372-45cb-a17b-88dc1bc8d4de" />
 
 ## ✨ Funktionen
 
