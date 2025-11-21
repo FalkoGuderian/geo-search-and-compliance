@@ -578,19 +578,67 @@ document.addEventListener('DOMContentLoaded', async () => {
                 return a.distance - b.distance;
             });
 
-            // Remove duplicates by name, keeping only the feature with the shortest distance
-            const uniqueFeaturesMap = new Map();
-            featuresWithDistances.forEach(item => {
-                const name = item.name;
+            // Check if this is a road/street layer that should preserve individual segments
+            const isRoadLayer = layerName.includes('RoadLink') || layerName.includes('Road');
+            const isRailwayLayer = layerName.includes('Railway') || layerName.includes('RailwayLink');
 
-                // If this name doesn't exist yet, or if this feature has a shorter distance, keep it
-                if (!uniqueFeaturesMap.has(name) || uniqueFeaturesMap.get(name).distance > item.distance) {
-                    uniqueFeaturesMap.set(name, item);
+            let deduplicatedFeatures;
+            if (isRoadLayer || isRailwayLayer) {
+                // For street/railway layers: Preserve segments but limit for performance
+                // Show much more road data - these are infrastructure features, not duplicates
+
+                // Group by road name (but keep all named roads, not just "known" ones)
+                // Allow up to 10000 segments per road name for major roads - removed limiting for road segments
+                const maxRoadSegmentsPerName = 10000;
+                const roadFeaturesMap = new Map();
+
+                featuresWithDistances.forEach(item => {
+                    const roadName = item.name || "Straße"; // Use "Straße" as fallback instead of "Unbekannt"
+
+                    if (!roadFeaturesMap.has(roadName)) {
+                        roadFeaturesMap.set(roadName, []);
+                    }
+                    roadFeaturesMap.get(roadName).push(item);
+                });
+
+                deduplicatedFeatures = [];
+                for (const [roadName, roadFeatures] of roadFeaturesMap.entries()) {
+                    // Sort by distance and take the closest segments
+                    roadFeatures.sort((a, b) => a.distance - b.distance);
+
+                    // Take closest segments, but allow more for roads since they're infrastructure
+                    const closestSegments = roadFeatures.slice(0, Math.min(maxRoadSegmentsPerName, roadFeatures.length));
+
+                    // If this is a major road with many segments, include more (up to the limit)
+                    const segmentCount = Math.min(roadFeatures.length, maxRoadSegmentsPerName);
+                    deduplicatedFeatures.push(...closestSegments);
+
+                    if (window.debugMode) {
+                        console.log(`Road ${roadName}: ${segmentCount} segments`);
+                    }
                 }
-            });
 
-            // Convert map back to array
-            const deduplicatedFeatures = Array.from(uniqueFeaturesMap.values());
+                // Limit total results to prevent UI overload but keep it high for roads
+                const maxTotalRoadResults = 10000;
+                if (deduplicatedFeatures.length > maxTotalRoadResults) {
+                    deduplicatedFeatures = deduplicatedFeatures.slice(0, maxTotalRoadResults);
+                }
+
+            } else {
+                // For other layers (protection areas, administrative boundaries), deduplicate strictly
+                const uniqueFeaturesMap = new Map();
+                featuresWithDistances.forEach(item => {
+                    const name = item.name;
+
+                    // If this name doesn't exist yet, or if this feature has a shorter distance, keep it
+                    if (!uniqueFeaturesMap.has(name) || uniqueFeaturesMap.get(name).distance > item.distance) {
+                        uniqueFeaturesMap.set(name, item);
+                    }
+                });
+
+                // Convert map back to array
+                deduplicatedFeatures = Array.from(uniqueFeaturesMap.values());
+            }
 
             // Sort again after deduplication to ensure proper order
             deduplicatedFeatures.sort((a, b) => {
@@ -1793,7 +1841,10 @@ fetchLayers();
             'OBJNAME', 'objname', 'objName',
             'GEN', 'gen', // Für Verwaltungsgebiete
             'title', 'Title', 'TITLE',
-            'bezeichnung', 'Bezeichnung', 'BEZEICHNUNG'
+            'bezeichnung', 'Bezeichnung', 'BEZEICHNUNG',
+            'roadName', 'localRoadName', 'officialRoadName', // Straßen-spezifische Eigenschaften
+            'streetName', 'street', 'STRASSENNAME',
+            'ObjectID', 'OBJECT_ID' // Fallback IDs
         ];
 
         // Sekundäre Namensfelder (falls primäre nicht gefunden werden)
@@ -1929,10 +1980,10 @@ fetchLayers();
             }
         }
 
-        // 3. Extract name from INSPIRE geographicalName structures (for INSPIRE servers)
-        // Detect INSPIRE based on presence of geographicalName properties
-        const hasInspireProperties = Object.keys(properties).some(key => 
-            key.includes('geographicalName') || key.includes('gn:text')
+        // 3. Extract name from INSPIRE structures (geographicalName and other XML structures)
+        // Detect INSPIRE based on presence of geographicalName or other XML structures
+        const hasInspireProperties = Object.keys(properties).some(key =>
+            key.includes('geographicalName') || key.includes('gn:text') || key.includes('name')
         );
 
         if (hasInspireProperties) {
@@ -1952,6 +2003,92 @@ fetchLayers();
                     if (nameMatch && isValidName(nameMatch[1])) {
                         console.log('Extracted INSPIRE geographical name:', nameMatch[1].trim());
                         return nameMatch[1].trim();
+                    }
+                }
+
+                // Additional: Look for road-specific name patterns in INSPIRE XML structures
+                if (key === 'name' && typeof value === 'string' && value.includes('<')) {
+                    // Try to extract name from INSPIRE name element
+                    const nameMatch = value.match(/<name>([^<]+)<\/name>/) ||
+                                    value.match(/<gn:text>([^<]+)<\/gn:text>/) ||
+                                    value.match(/<text>([^<]+)<\/text>/);
+                    if (nameMatch && isValidName(nameMatch[1])) {
+                        console.log('Extracted INSPIRE name from XML:', nameMatch[1].trim());
+                        return nameMatch[1].trim();
+                    }
+                }
+
+        // Look for roadName in XML structures
+                if (key === 'roadName' && typeof value === 'string' && value.includes('<')) {
+                    const nameMatch = value.match(/<([^>]+)>([^<]+)<\/[^>]+>/);
+                    if (nameMatch && isValidName(nameMatch[2])) {
+                        console.log('Extracted roadName from XML:', nameMatch[2].trim());
+                        return nameMatch[2].trim();
+                    }
+                }
+
+                // Special handling for INSPIRE road names - look for name or geographicalName in XML
+                if (key === 'name' || key === 'geographicalName') {
+                    // Try multiple patterns for INSPIRE names
+                    const namePatterns = [
+                        /<gn:text[^>]*>([^<]+)<\/gn:text>/,  // Standard INSPIRE format
+                        /<text[^>]*>([^<]+)<\/text>/,      // Simple text format
+                        /<name[^>]*>([^<]+)<\/name>/,      // Simple name format
+                        /<([^>]*text[^>]*)>([^<]+)<\/[^>]+>/i  // Generic text element
+                    ];
+
+                    for (const pattern of namePatterns) {
+                        const nameMatch = value.match(pattern);
+                        if (nameMatch && nameMatch[1] && isValidName(nameMatch[1].trim())) {
+                            console.log(`Extracted INSPIRE ${key}:`, nameMatch[1].trim());
+                            return nameMatch[1].trim();
+                        }
+                    }
+
+                    // For roads, also try to extract from structured XML like "<gn:text>Bundesstraße 1</gn:text>"
+                    const xmlDoc = new DOMParser().parseFromString(`<root>${value}</root>`, 'text/xml');
+                    const textNodes = xmlDoc.querySelectorAll('*');
+                    for (const node of textNodes) {
+                        if (node.nodeName.toLowerCase().includes('text') && node.textContent && isValidName(node.textContent.trim())) {
+                            console.log(`Extracted from XML ${key}:`, node.textContent.trim());
+                            return node.textContent.trim();
+                        }
+                    }
+                }
+
+                // Look for road-specific properties
+                if (key.toLowerCase().includes('road') || key.toLowerCase().includes('strasse') || key.toLowerCase().includes('straße')) {
+                    if (isValidName(value)) {
+                        console.log(`Found road-specific property ${key}:`, value.trim());
+                        return value.trim();
+                    }
+                }
+            }
+
+            // Additional search for INSPIRE name in any XML field
+            for (const [key, value] of Object.entries(properties)) {
+                if (typeof value === 'string' && value.includes('<gn:text') && value.includes('</gn:text>')) {
+                    const nameMatch = value.match(/<gn:text[^>]*>([^<]+)<\/gn:text>/);
+                    if (nameMatch && isValidName(nameMatch[1])) {
+                        console.log('Found INSPIRE text in field', key, ':', nameMatch[1].trim());
+                        return nameMatch[1].trim();
+                    }
+                }
+
+                // Also check for other XML structures with text content
+                if (typeof value === 'string' && (value.includes('<text>') || value.includes('<gn:text>'))) {
+                    const patterns = [
+                        /<gn:text[^>]*>([^<]+)<\/gn:text>/,
+                        /<text[^>]*>([^<]+)<\/text>/,
+                        /<name[^>]*>([^<]+)<\/name>/
+                    ];
+
+                    for (const pattern of patterns) {
+                        const match = value.match(pattern);
+                        if (match && match[1] && isValidName(match[1].trim())) {
+                            console.log(`Extracted XML from field ${key}:`, match[1].trim());
+                            return match[1].trim();
+                        }
                     }
                 }
             }

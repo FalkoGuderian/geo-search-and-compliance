@@ -37,7 +37,8 @@ VERFÜGBARE WFS-DIENSTE UND LAYER-DETAILS:
   * "hy-p:Shore" - Ufer
   * "hy-p:Wetland" - Feuchtgebiet
 - VERKEHR Layer:
-  * "tn-ra:RailwayStationNode" - Bahnhofs-Knoten (/Bahnhöfe, Haltestellen)
+  * "tn-ra:RailwayStationNode" - Bahnhofs-Knoten (Bahnhöfe, Haltestellen)
+  * "tn-ra:RailwayLink" - Bahn-Verbindung (Schienennetz, Bahnstrecken)
   * "tn-ro:RoadLink" - Straßen-Verbindung (Straßennetz)
   * "tn-ro:ERoad" - E-Straßen
 - TRANSPORT/INFRASTRUKTUR:
@@ -73,13 +74,15 @@ WICHTIGE AUSWAHLREGELN - BEFOLGEN SIE DIESE UNBEDINGT:
 - Für FLÜSSE/BÄCHE/KANÄLE: IMMER DLM250 → "hy-p:Watercourse"
 - Für VÖGEL/VOGELSCHUTZ/AVIFAUNA: IMMER BfN → "bfn_sch_Schutzgebiet:Vogelschutzgebiete"
 - Für HÄFEN/HAFENBEREICHE: IMMER DLM250 → "tn-w:PortArea" (NICHT Bahnhöfe!)
-- Für BAHNHOFE/BAHNEN/ZÜGE/EISENBAHN: IMMER DLM250 → "tn-ra:RailwayStationNode" (NICHT Häfen!)
+- Für BAHNHOFE/BAHNSTATIONEN/ZÜGE/EISENBAHNSTATIONEN: IMMER DLM250 → "tn-ra:RailwayStationNode" (NICHT Schienennetz!)
+- Für SCHIENENNETZ/BAHNSTRECKEN/EISENBAHNTRASSE: IMMER DLM250 → "tn-ra:RailwayLink" (NICHT Bahnhöfe!)
 - Für STRASSEN/STRASSENNETZ/VERKEHRSWEGE: IMMER DLM250 → "tn-ro:RoadLink"
 - Für SCHUTZGEBIETE/NATURSCHUTZ/UMWELTZONEN: IMMER BfN → "bfn_sch_Schutzgebiet:Naturschutzgebiete" (außer Vögel!)
 - Für VERWALTUNGSGEBIETE/GEMEINDEN/KREISE/STADTTEILE: IMMER BKG → "vg250:vg250_gem"
 - Bei KONTEXT "VÖGEL"/"VOGEL"/"VOGELSCHUTZ"/"AVIFAUNA": LAYER "bfn_sch_Schutzgebiet:Vogelschutzgebiete"
 - Bei KONTEXT "SEEN"/"GEWÄSSER"/"WASSER": LAYER "hy-p:StandingWater"
 - Bei KONTEXT "HAFEN"/"PORT"/"SCHIFF"/"WASSERTRANSPORT": LAYER "tn-w:PortArea"
+- Bei KONTEXT "SCHIENENNETZ"/"BAHNSTRECKE"/"EISENBAHNTRACKE"/"SCHIENE": LAYER "tn-ra:RailwayLink"
 
 SCHLÜSSELWORT-ABBILDUNG:
 - "VOGEL" → "bfn_sch_Schutzgebiet:Vogelschutzgebiete"
@@ -89,6 +92,12 @@ SCHLÜSSELWORT-ABBILDUNG:
 - "GEWÄSSER" → "hy-p:StandingWater"
 - "HAFEN" → "tn-w:PortArea"
 - "BAHNHOF" → "tn-ra:RailwayStationNode"
+- "BAHNSTATION" → "tn-ra:RailwayStationNode"
+- "SCHIENENNETZ" → "tn-ra:RailwayLink"
+- "BAHNSTRECKE" → "tn-ra:RailwayLink"
+- "BAHNTRACKE" → "tn-ra:RailwayLink"
+- "EISENBAHNTRASSE" → "tn-ra:RailwayLink"
+- "SCHIENE" → "tn-ra:RailwayLink"
 - "STRAßE" → "tn-ro:RoadLink"
 - "NATURSCHUTZGEBIET" → "bfn_sch_Schutzgebiet:Naturschutzgebiete"
 - "GEMEINDE" → "vg250:vg250_gem"
