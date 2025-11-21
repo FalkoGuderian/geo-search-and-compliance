@@ -665,6 +665,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
+    // Update button text based on compliance checkbox
+    const updateButtonText = () => {
+        const button = document.querySelector('#ogc-form button[type="submit"]');
+        if (autoComplianceCheck.checked) {
+            button.innerHTML = 'Suche & Prüfung starten';
+        } else {
+            button.innerHTML = 'Suche starten';
+        }
+    };
+
+    // Listen for changes to the compliance checkbox
+    autoComplianceCheck.addEventListener('change', updateButtonText);
+
+    // Initialize button text on page load
+    updateButtonText();
+
     // === VOICE INPUT FUNCTIONALITY ===
     let autoVoiceMode = true; // Standardmäßig aktiviert für automatisch Spracherkennung nach Vorlesen
     let isRecording = false;
@@ -1391,7 +1407,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-600 px-6 py-4 text-white">
                         <div class="flex items-center justify-between">
                             <div>
-                                <h3 class="text-xl font-bold">OGC Abstandsmessung - Hilfe & Features</h3>
+                                <h3 class="text-xl font-bold">Objektsuche und Compliance Check - Hilfe & Features</h3>
                                 <p class="text-indigo-100 mt-1">Erfahren Sie mehr über die Funktionen und Möglichkeiten</p>
                             </div>
                             <button id="close-main-help-btn" class="text-white hover:bg-white hover:bg-opacity-20 rounded-full p-2">
@@ -1425,7 +1441,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                                     <ul class="text-sm text-gray-700 space-y-2">
                                         <li><strong>Natürlichsprachige Anfragen:</strong> "Finde Naturschutzgebiete um Dresden"</li>
                                         <li><strong>Automatische Parametererkennung:</strong> KI erkennt Server, Layer, Koordinaten</li>
-                                        <li><strong>Sprachsteuerung:</strong> Voice-Input und Text-to-Speech für hands-free Bedienung</li>
+                                        <li><strong>Sprachsteuerung:</strong> Voice-Input und Text-to-Speech für einfache Bedienung</li>
                                         <li><strong>Intelligente Suchvorschläge:</strong> KI-gestützte Empfehlungen und kontextuelle Parametererkennung</li>
                                     </ul>
                                 </div>
@@ -1492,7 +1508,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                                     <li>1. <strong>Konfigurieren:</strong> Wählen Sie einen WFS-Server und laden Sie verfügbare Layer</li>
                                     <li>2. <strong>Koordinaten setzen:</strong> Eingabe oder Kartenauswahl Ihres Objekts</li>
                                     <li>3. <strong>Prüfvorschrift definieren:</strong> Legen Sie Compliance-Kriterien fest</li>
-                                    <li>4. <strong>Messen:</strong> Starten Sie die Abstandsmessung und Compliance-Prüfung</li>
+                                    <li>4. <strong>Prüfen:</strong> Starten den Compliance Check</li>
                                     <li>5. <strong>Ergebnisse analysieren:</strong> Betrachten Sie Visualisierung und KI-Bewertung</li>
                                 </ol>
                             </div>
