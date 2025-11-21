@@ -1550,6 +1550,65 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 </div>
                             </div>
 
+                            <div class="help-modal-usecases bg-gray-50 rounded-lg p-4">
+                                <h4 class="font-semibold text-gray-900 mb-2">📋 Anwendungsbeispiele</h4>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="bg-yellow-50 p-3 rounded-lg border border-yellow-200">
+                                        <div class="flex items-center mb-2">
+                                            <span class="text-lg mr-2">🚂</span>
+                                            <h5 class="font-semibold text-yellow-900">Schienennetz Sachsen</h5>
+                                        </div>
+                                        <p class="text-sm text-yellow-800 mb-1"><em>"Schienennetz in Sachsen"</em></p>
+                                        <p class="text-sm text-yellow-800">Visualisiert das komplette Schienennetz (RailwayLink) in Sachsen mit erweitertem Suchradius von 150km.</p>
+                                    </div>
+
+                                    <div class="bg-red-50 p-3 rounded-lg border border-red-200">
+                                        <div class="flex items-center mb-2">
+                                            <span class="text-lg mr-2">🏛️</span>
+                                            <h5 class="font-semibold text-red-900">Gemeinden Dresden</h5>
+                                        </div>
+                                        <p class="text-sm text-red-800 mb-1"><em>"Zeige alle Gemeinden in 20 km um Dresden"</em></p>
+                                        <p class="text-sm text-red-800">Darstellung aller Gemeinden (vg250:vg250_gem) im 20km-Radius um Dresden-Mitte.</p>
+                                    </div>
+
+                                    <div class="bg-blue-50 p-3 rounded-lg border border-blue-200">
+                                        <div class="flex items-center mb-2">
+                                            <span class="text-lg mr-2">🌊</span>
+                                            <h5 class="font-semibold text-blue-900">Flüsse Dresden</h5>
+                                        </div>
+                                        <p class="text-sm text-blue-800 mb-1"><em>"Zeige alle Flüsse und Bäche in Dresden"</em></p>
+                                        <p class="text-sm text-blue-800">Anzeige aller Fließgewässer (Watercourse) im Stadtgebiet Dresden.</p>
+                                    </div>
+
+                                    <div class="bg-green-50 p-3 rounded-lg border border-green-200">
+                                        <div class="flex items-center mb-2">
+                                            <span class="text-lg mr-2">🐦</span>
+                                            <h5 class="font-semibold text-green-900">Vogelschutz Dresden</h5>
+                                        </div>
+                                        <p class="text-sm text-green-800 mb-1"><em>"Wo sind Vögel in Dresden und Umgebung geschützt"</em></p>
+                                        <p class="text-sm text-green-800">Anzeige aller Vogelschutzgebiete in Dresden und Umgebung.</p>
+                                    </div>
+
+                                    <div class="bg-blue-50 p-3 rounded-lg border border-blue-200">
+                                        <div class="flex items-center mb-2">
+                                            <span class="text-lg mr-2">✈️</span>
+                                            <h5 class="font-semibold text-blue-900">Flugplätze Sachsen</h5>
+                                        </div>
+                                        <p class="text-sm text-blue-800 mb-1"><em>"Finde alle Flugplätze im Großraum Leipzig, Chemnitz und Dresden"</em></p>
+                                        <p class="text-sm text-blue-800">Visualisiert alle Flugplätze (AerodromeArea) im Mehrstadtbereich.</p>
+                                    </div>
+
+                                    <div class="bg-purple-50 p-3 rounded-lg border border-purple-200">
+                                        <div class="flex items-center mb-2">
+                                            <span class="text-lg mr-2">🌱</span>
+                                            <h5 class="font-semibold text-purple-900">Naturschutz Dresden</h5>
+                                        </div>
+                                        <p class="text-sm text-purple-800 mb-1"><em>"Finde alle Naturschutzgebiete 10000m von Dresden-Mitte entfernt"</em></p>
+                                        <p class="text-sm text-purple-800">Visualisiert alle Naturschutzgebiete innerhalb 10km von Dresden-Mitte.</p>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="help-modal-quickstart bg-gray-50 rounded-lg p-4">
                                 <h4 class="font-semibold text-gray-900 mb-2">💡 Erste Schritte</h4>
                                 <ol class="text-sm text-gray-700 space-y-1">
