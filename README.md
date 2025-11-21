@@ -1,4 +1,4 @@
-# Geo-Suche und Compliance Check
+# Objektsuche und Compliance Check
 
 Eine webbasierte Anwendung zur Suche von geografischen Objekten über OGC Web Feature Services (WFS) mit KI-gestützter Unterstützung und automatischer Compliance-Prüfung.
 
