@@ -37,7 +37,7 @@ Die Anwendung ist deployed und sofort benutzbar ohne lokale Installation.
 |-------------|---------------|
 | Finde alle Seen im Großraum Leipzig | Zeigt alle Seen (StandingWater) im 50km-Radius um Leipzig mit farbkodierten Entfernungsmarkierungen |
 | Finde alle Naturschutzgebiete 10000m von der Stadtmitte Dresden entfernt | Visualisiert alle Naturschutzgebiete innerhalb 10km von Dresden-Mitte mit automatisierten Compliance-Indikatoren |
-| Finde alle Bahnhöfe in Freital | <img width="244" height="267" alt="image" src="https://github.com/user-attachments/assets/4435a4da-487f-428c-b6e5-cc0d2c9b65c3" /> Anzeige aller Bahnhofs-Knoten im Stadtgebiet Freital mit interaktiven Popups und Lagebezügen |
+| Finde alle Bahnhöfe in Freital | Anzeige aller Bahnhofs-Knoten im Stadtgebiet Freital mit interaktiven Popups und Lagebezügen<img width="244" height="267" alt="image" src="https://github.com/user-attachments/assets/4435a4da-487f-428c-b6e5-cc0d2c9b65c3" />|
 
 ## 🏗️ Architecture
 
