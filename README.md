@@ -31,6 +31,14 @@ Die Anwendung ist deployed und sofort benutzbar ohne lokale Installation.
 - **Interaktive Karte**: Visualisierung mit Leaflet.js
 - **Modulare Architektur**: Einfach erweiterbar für zusätzliche OGC Dienste
 
+## 🧪 Use Cases
+
+| Sucheanfrage | Ergebniskarte |
+|-------------|---------------|
+| Finde alle Seen im Großraum Leipzig | Zeigt alle Seen (StandingWater) im 50km-Radius um Leipzig mit farbkodierten Entfernungsmarkierungen |
+| Finde alle Naturschutzgebiete 10000m von der Stadtmitte Dresden entfernt | Visualisiert alle Naturschutzgebiete innerhalb 10km von Dresden-Mitte mit automatisierten Compliance-Indikatoren |
+| Finde alle Bahnhöfe in Freital | Anzeige aller Bahnhofs-Knoten im Stadtgebiet Freital mit interaktiven Popups und Lagebezügen |
+
 ## 🏗️ Architecture
 
 ```
