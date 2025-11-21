@@ -2623,11 +2623,17 @@ fetchLayers();
                     <strong>Enthaltende Gebiete:</strong> ${containingCount}<br>
                     <strong>Nahe Gebiete:</strong> ${nearbyCount}<br>
                     <small>Datenformat: ${serverType.toUpperCase()}, ${totalFeatures} Features vom Server${maxFeaturesIndicator}</small>
+                    <button id="toggle-details-btn" class="ml-3 px-3 py-1 text-xs bg-blue-100 hover:bg-blue-200 text-blue-700 rounded transition-colors inline-flex items-center">
+                        <svg id="toggle-details-icon" class="w-4 h-4 mr-1 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                        Details einblenden
+                    </button>
                 </div>
-            </div>
-        `;
+                <div id="detailed-results" class="space-y-4 hidden">
+`;
 
-        // Group by containing/nearby
+        // Group by containing/nearby and build detail content
         if (containingCount > 0) {
             resultHtml += `
                 <div class="mb-4">
@@ -2672,7 +2678,40 @@ fetchLayers();
             `;
         }
 
+        resultHtml += `
+                </div>
+            </div>
+        `;
+
         showResult('success', resultHtml);
+
+        // Add event listener for toggle button
+        setTimeout(() => {
+            const toggleBtn = document.getElementById('toggle-details-btn');
+            const detailsDiv = document.getElementById('detailed-results');
+            const icon = document.getElementById('toggle-details-icon');
+
+            if (toggleBtn && detailsDiv && icon) {
+                toggleBtn.addEventListener('click', () => {
+                    detailsDiv.classList.toggle('hidden');
+                    if (detailsDiv.classList.contains('hidden')) {
+                        toggleBtn.innerHTML = `
+                            <svg id="toggle-details-icon" class="w-4 h-4 mr-1 transform transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                            Details einblenden
+                        `;
+                    } else {
+                        toggleBtn.innerHTML = `
+                            <svg id="toggle-details-icon" class="w-4 h-4 mr-1 transform rotate-180 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+                            </svg>
+                            Details ausblenden
+                        `;
+                    }
+                });
+            }
+        }, 100);
     }
 
     function updateMapVisualization(featuresWithDistances, coordinatePoint, lat, lon, showDistanceMarkers = false) {
