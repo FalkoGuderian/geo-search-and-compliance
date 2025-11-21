@@ -15,7 +15,7 @@ Die Anwendung ist deployed und sofort benutzbar ohne lokale Installation.
 ### KI-Assistent
 <img width="747" height="712" alt="image" src="https://github.com/user-attachments/assets/dbf85c26-80d8-4eca-a1b5-c866be78ba2c" />
 
-### Abstandsmessung
+### Manuelle Eingabe
 <img width="742" height="397" alt="image" src="https://github.com/user-attachments/assets/10144d6d-1906-4fa7-9912-00e9700ca5ed" />
 
 ### Compliance-Prüfung
