@@ -4,11 +4,11 @@ Eine webbasierte Anwendung zur Suche von geografischen Objekten über OGC Web Fe
 
 ## 🚀 Überblick
 
-Dieses Tool ermöglicht es Benutzern, Abstände von einem bestimmten Punkt zu allen Features eines WFS-Layers innerhalb einer definierten Suchdistanz zu messen und automatisch Compliance gegenüber regulatorischen Anforderungen zu prüfen. Benutzereingaben werden durch KI-Unterstützung für natürlichsprachliche Anfragen und automatische Parametererkennung erleichtert.
+Dieses Tool ermöglicht es Benutzern, geografische Objekte über OGC Web Feature Services zu suchen und automatisch Compliance gegenüber regulatorischen Anforderungen zu prüfen, wobei auch Abstandsmessungen unterstützt werden. Benutzereingaben werden durch KI-Unterstützung für natürlichsprachliche Anfragen und automatische Parametererkennung erleichtert.
 
 ## 🌐 Live Demo
 
-**Testen Sie das Tool online:** [https://ogc-distance-and-compliance.onrender.com/](https://geo-search-and-compliance-check.onrender.com)
+**Testen Sie das Tool online:** https://geo-search-and-compliance-check.onrender.com
 
 Die Anwendung ist deployed und sofort benutzbar ohne lokale Installation.
 
@@ -34,7 +34,7 @@ Die Anwendung ist deployed und sofort benutzbar ohne lokale Installation.
 ## 🏗️ Architecture
 
 ```
-ogc-distance-measurement-tool/
+geo-search-and-compliance/
 ├── index.html              # Main UI
 ├── src/
 │   ├── main.js            # Main JavaScript logic
@@ -61,8 +61,8 @@ ogc-distance-measurement-tool/
 ### 1. Clone repository
 
 ```bash
-git clone https://github.com/your-username/ogc-distance-measurement-tool.git
-cd ogc-distance-measurement-tool
+git clone https://github.com/your-username/geo-search-and-compliance.git
+cd geo-search-and-compliance
 ```
 
 ### 2. Install dependencies
@@ -172,7 +172,7 @@ Compliance rules can be defined in `config/config.json`:
 
 ### Live Demo
 
-The application is deployed and live at: **[https://ogc-distance-and-compliance.onrender.com/](https://geo-search-and-compliance-check.onrender.com)**
+The application is deployed and live at: **https://geo-search-and-compliance-check.onrender.com**
 
 ### Automatic Deployment (Render.com)
 
@@ -186,7 +186,7 @@ The following configuration ensures proper deployment:
 ```yaml
 services:
   - type: web
-    name: ogc-distance-and-compliance
+    name: geo-search-and-compliance
     runtime: static
     staticPath: dist
     headers:
