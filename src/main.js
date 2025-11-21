@@ -311,7 +311,13 @@ document.addEventListener('DOMContentLoaded', async () => {
                     if (coordinateMarker) {
                         coordinateMarker.setLatLng([51.055, 13.701]);
                     } else {
-                        coordinateMarker = L.marker([51.055, 13.701], { title: "Koordinaten-Position" }).addTo(map);
+                        coordinateMarker = L.circleMarker([51.055, 13.701], {
+                            radius: 8,
+                            color: '#7c3aed', // purple-600
+                            fillColor: '#a855f7', // purple-500
+                            fillOpacity: 0.9,
+                            title: "Koordinaten-Position (Aktiv)"
+                        }).addTo(map);
                     }
                     map.setView([51.055, 13.701], 13);
                 }
@@ -345,7 +351,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         const coordinatePoint = turf.point([lon, lat]);
         console.log('Turf.js point created:', coordinatePoint);
 
-        coordinateMarker = L.marker([lat, lon], { title: "Koordinaten-Position" }).addTo(map);
+        // Remove existing marker if it exists to prevent duplicates
+        if (coordinateMarker) {
+            map.removeLayer(coordinateMarker);
+        }
+        coordinateMarker = L.circleMarker([lat, lon], {
+            radius: 8,
+            color: '#7c3aed', // purple-600
+            fillColor: '#a855f7', // purple-500
+            fillOpacity: 0.9,
+            title: "Koordinaten-Position (Aktiv)"
+        }).addTo(map);
         map.setView([lat, lon], 13);
 
         // Calculate expanded bbox for search distance
@@ -1352,7 +1368,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (coordinateMarker) {
             coordinateMarker.setLatLng(e.latlng);
         } else {
-            coordinateMarker = L.marker(e.latlng, { title: "Koordinaten-Position" }).addTo(map);
+            coordinateMarker = L.circleMarker(e.latlng, {
+                radius: 8,
+                color: '#7c3aed', // purple-600
+                fillColor: '#a855f7', // purple-500
+                fillOpacity: 0.9,
+                title: "Koordinaten-Position (Aktiv)"
+            }).addTo(map);
         }
     });
 
@@ -1683,7 +1705,13 @@ fetchLayers();
             if (coordinateMarker) {
                 coordinateMarker.setLatLng([lat, lon]);
             } else {
-                coordinateMarker = L.marker([lat, lon], { title: "KI-extrahierte Koordinaten" }).addTo(map);
+                coordinateMarker = L.circleMarker([lat, lon], {
+                    radius: 8,
+                    color: '#7c3aed', // purple-600
+                    fillColor: '#a855f7', // purple-500
+                    fillOpacity: 0.9,
+                    title: "KI-extrahierte Koordinaten (Aktiv)"
+                }).addTo(map);
             }
 
             map.setView([lat, lon], 13);

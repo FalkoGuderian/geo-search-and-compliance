@@ -35,8 +35,8 @@ VERFÜGBARE WFS-DIENSTE UND LAYER-DETAILS:
   * "dlmlpz250:GE_Gewässer" - Gewässerbereiche (/See, Stausee, Weiher)
   * "dlmlpz250:LN_Gewässer" - Fließgewässer (/Fluss, Bach, Kanal)
 - VERKEHR Layer:
+  * "tn-ra:RailwayStationNode" - Bahnhofs-Knoten (/Bahnhöfe, Haltestellen)
   * "dlmlpz250:TN_Strasse" - Straßennetz (/Bundesstraße Bxxx, Autobahn Axxx)
-  * "dlmlpz250:TN_Bahn" - Bahnnetz (/Bahnhof, Haltestelle)
   * "dlmlpz250:TN_Hafen" - Hafenbereiche (/Hafen-Knoten, Hafen-Becken)
 - PUNKTORTE: Bahnhöfe, Aussichtspunkte, Denkmäler, Messpunkte
 - STRASSEN: Bundesstraßen (B), Landesstraßen (L), Kreisstraßen (K)
@@ -45,7 +45,7 @@ VERFÜGBARE WFS-DIENSTE UND LAYER-DETAILS:
 
 BEISPIELE FÜR ANWENDUNGSFÄLLE:
 - "Entfernung zu Hafen": DLM250 → TN_Hafen (nicht Schutzgebiete!)
-- "Bahnhof in der Nähe": DLM250 → TN_Bahn oder TN_Punktort
+- "Bahnhof in der Nähe": DLM250 → RailwayStationNode
 - "Straße finden": DLM250 → TN_Strasse
 - "Naturschutzgebiet prüfen": BfN-Schutzgebiete → Naturschutzgebiete
 - "Gemeindegrenze": BKG-Verwaltungsgebiete → vg250_gem
@@ -63,7 +63,7 @@ Bitte analysieren Sie die Anweisung und antworten Sie ausschließlich mit einem 
 
 WICHTIGE AUSWAHLREGELN - BEFOLGEN SIE DIESE UNBEDINGT:
 - Für HÄFEN/HAFENBEREICHE/HAFEN-KNOTEN/KAI-BECKEN: IMMER DLM250 → "dlmlpz250:TN_Hafen" (NICHT Bahnhöfe!)
-- Für BAHNHOFE/BAHNEN/ZÜGE/EISENBAHN: IMMER DLM250 → "dlmlpz250:TN_Bahn" (NICHT Häfen!)
+- Für BAHNHOFE/BAHNEN/ZÜGE/EISENBAHN: IMMER DLM250 → "tn-ra:RailwayStationNode" (NICHT Häfen!)
 - Für STRASSEN/STRASSENNETZ/VERKEHRSWEGE: IMMER DLM250 → "dlmlpz250:TN_Strasse"
 - Für SCHUTZGEBIETE/NATURSCHUTZ/UMWELTZONEN: IMMER BfN → "bfn_sch_Schutzgebiet:Naturschutzgebiete"
 - Für VERWALTUNGSGEBIETE/GEMEINDEN/KREISE/STADTTEILE: IMMER BKG → "vg250:vg250_gem"
@@ -72,7 +72,7 @@ WICHTIGE AUSWAHLREGELN - BEFOLGEN SIE DIESE UNBEDINGT:
 
 SCHLÜSSELWORT-ABBILDUNG:
 - "HAFEN" → "dlmlpz250:TN_Hafen"
-- "BAHNHOF" → "dlmlpz250:TN_Bahn"
+- "BAHNHOF" → "tn-ra:RailwayStationNode"
 - "STRAßE" → "dlmlpz250:TN_Strasse"
 - "NATURSCHUTZGEBIET" → "bfn_sch_Schutzgebiet:Naturschutzgebiete"
 - "GEMEINDE" → "vg250:vg250_gem"
